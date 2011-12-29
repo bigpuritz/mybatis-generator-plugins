@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="tables" targetRuntime="MyBatis3">
+
+        <plugin type="com.google.code.mybatis.generator.plugins.ModelBuilderPlugin">
+            <property name="builderClassName" value="Builder"/>
+            <property name="excludeClassNamesRegexp" value="com.*Blog"/>
+        </plugin>
+
+        <plugin type="com.google.code.mybatis.generator.plugins.CriteriaBuilderPlugin"/>
+
+        <plugin type="com.google.code.mybatis.generator.plugins.SelectOneByExamplePlugin">
+            <property name="methodToGenerate" value="selectOnlyOneByExample"/>
+            <property name="excludeClassNamesRegexp" value="com.*BlogMapper"/>
+        </plugin>
+
+
+        <plugin type="com.google.code.mybatis.generator.plugins.CachePlugin">
+
+            <property name=".*UserMapper"
+                      value="implementation=org.mybatis.caches.ehcache.LoggingEhcache.class,eviction=org.apache.ibatis.cache.decorators.LruCache.class,flushInterval=100,size=100" />
+            <property name=".*BlogMapper"
+                      value="implementation=org.mybatis.caches.ehcache.LoggingEhcache.class" />
+
+            <!-- global -->
+            <!--<property name="implementation" value="org.mybatis.caches.ehcache.LoggingEhcache"/>
+            <property name="flushInterval" value="Long.MAX_VALUE"/>-->
+
+            <!-- class specific -->
+            <!--<property name="t_blog:eviction" value="org.apache.ibatis.cache.decorators.LruCache"/>
+            <property name="t_blog:size" value="1000"/>
+            <property name="t_blog:readWrite" value="true"/>-->
+
+        </plugin>
+
+
+        <plugin type="com.google.code.mybatis.generator.plugins.OptionsPlugin">
+            <property name=".*UserMapper#.*"
+                      value="fetchSize=1,timeout=0,useCache=true,flushCache=true" />
+        </plugin>
+
+        <plugin type="com.google.code.mybatis.generator.plugins.MapperDecoratorPlugin">
+            <property name="methodToGenerate" value="selectByExampleDecorated"/>
+            <property name="methodToDecorate" value="selectByExample"/>
+            <property name="sql" value="select * from ( #{methodToDecorate} ) a where 1 = 1"/>
+        </plugin>
+
+        <plugin type="com.google.code.mybatis.generator.plugins.MapperDecoratorPlugin">
+            <property name="methodToGenerate" value="updateByExampleSelective2"/>
+            <property name="methodToDecorate" value="updateByExampleSelective"/>
+            <property name="a" value="long"/>
+            <property name="b" value="long"/>
+            <property name="sql" value="#{methodToDecorate} and a = ${a} and b = ${b}"/>
+        </plugin>
+
+
+        <jdbcConnection driverClass="org.hsqldb.jdbc.JDBCDriver"
+                        connectionURL="jdbc:hsqldb:file:src/test/resources/database/testdb;readonly=true"
+                        userId="sa" password="">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.google.code.mybatis.generator.plugins.gen" targetProject="MAVEN">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.google.code.mybatis.generator.plugins.gen"
+                         targetProject="src/gen/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.google.code.mybatis.generator.plugins.gen"
+                             targetProject="MAVEN">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="t_user" domainObjectName="User">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <table tableName="t_blog" domainObjectName="Blog">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

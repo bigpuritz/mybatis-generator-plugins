@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.google.code.mybatis.generator</groupId>
+    <artifactId>mybatis-generator-plugins-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>mybatis-generator-plugins-tests</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <mybatis-generator-core.version>1.3.1</mybatis-generator-core.version>
+        <mybatis-generator-plugins.version>1.0-SNAPSHOT</mybatis-generator-plugins.version>
+        <hsqldb.version>2.2.6</hsqldb.version>
+        <mybatis.version>3.0.6</mybatis.version>
+        <mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
+        <junit.version>4.8.2</junit.version>
+        <javaparser.version>1.0.8</javaparser.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-plugins</artifactId>
+            <version>${mybatis-generator-plugins.version}</version>
+            <scope>provided</scope> 
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+            <scope>provided</scope> 
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
+            <version>${mybatis-ehcache.version}</version>
+            <scope>provided</scope> 
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>provided</scope> 
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.javaparser</groupId>
+            <artifactId>javaparser</artifactId>
+            <version>${javaparser.version}</version>
+            <scope>provided</scope> 
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <optimize>true</optimize>
+                    <debug>true</debug>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>2.0.3</version>
+                <configuration>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <verbose>true</verbose>
+                    <driver>org.hsqldb.jdbc.JDBCDriver</driver>
+                    <url>jdbc:hsqldb:file:${basedir}/src/test/resources/database/testdb</url>
+                    <username>sa</username>
+                    <password></password>
+                    <changeLogFile>${basedir}/src/test/resources/database/ddl.xml</changeLogFile>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                        <version>${hsqldb.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>prepare test database</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>dropAll</goal>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.1</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/test/resources/database/generatorConfig.xml
+                    </configurationFile>
+                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
+                        <version>${hsqldb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.google.code.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-plugins</artifactId>
+                        <version>${mybatis-generator-plugins.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="mk" id="1">
+        <comment>create test schema script</comment>
+
+        <createTable tableName="t_user" remarks="user's table">
+
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(15)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="alias" type="varchar(30)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="password" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <createTable tableName="t_blog" remarks="blog's table">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar(10)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(10000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="owner_id" type="bigint" defaultValue="0">
+                <constraints nullable="false" unique="false" foreignKeyName="fk_t_blog_owner_2_t_user"
+                             references="t_user(id)" deleteCascade="true"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>  
