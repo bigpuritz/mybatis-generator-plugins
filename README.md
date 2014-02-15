@@ -1,8 +1,10 @@
+### Documentation
 See http://blog.javaforge.net/post/30577502737/mybatis-generator-plugins for further details.
 
+--
 
-Mybatis Generator Plugins v. 1.0.0 release available:
-https://github.com/bigpuritz/mybatis-generator-plugins/releases/tag/mybatis-generator-plugins-1.0.0
+### Mybatis Generator Plugins v. 1.0.0 release available:
+#### https://github.com/bigpuritz/mybatis-generator-plugins/releases/tag/mybatis-generator-plugins-1.0.0
 
 Maven users please add following repository and dependency declarations to your POM-File:
 
