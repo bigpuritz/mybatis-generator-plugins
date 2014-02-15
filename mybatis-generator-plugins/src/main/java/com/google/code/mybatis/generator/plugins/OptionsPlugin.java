@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2014.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.code.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.IntrospectedTable;
@@ -14,29 +30,28 @@ import java.util.regex.Pattern;
  * Adds @Options annotation to the specified mapper method.<br/>
  * Example configuration:<br/>
  * <tt><pre>
-  * &lt;generatorConfiguration&gt;
+ * &lt;generatorConfiguration&gt;
  *  &lt;context ...&gt;
- *
+ * <p/>
  *      &lt;plugin type="com.google.code.mybatis.generator.plugins.OptionsPlugin"&gt;
  *          &lt;property name=".*UserMapper#.*ByExample"
  *                     value="fetchSize=1,timeout=0,useCache=true,flushCache=true" /&gt;
  *          &lt;property name=".*GroupMapper#.*ByExample"
  *                     value="fetchSize=10,timeout=10,useCache=false,flushCache=true" /&gt;
  *          ...
- *
+ * <p/>
  *      &lt;/plugin&gt;
  *      ...
- *
+ * <p/>
  *  &lt;/context&gt;
  * &lt;/generatorConfiguration&gt;
  * </pre></tt>
  * This plugin can deal with any number of properties defined using following pattern:<br/>
  * <ol>
- *     <li><strong>name</strong> is a regular expression pair to match a fully qualified name of the class / method.
- *     It should be defined using following rule: <strong>classNameRegexp#methodnameRegexp</strong></li>
- *     <li><strong>value</strong> is a value of the @Options annotation</li>
+ * <li><strong>name</strong> is a regular expression pair to match a fully qualified name of the class / method.
+ * It should be defined using following rule: <strong>classNameRegexp#methodnameRegexp</strong></li>
+ * <li><strong>value</strong> is a value of the @Options annotation</li>
  * </ol>
- *
  *
  * @author Maxim Kalina
  * @version $Id$

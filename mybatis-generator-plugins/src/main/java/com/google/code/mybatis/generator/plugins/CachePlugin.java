@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2014.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.code.mybatis.generator.plugins;
 
 import org.mybatis.generator.api.IntrospectedTable;
@@ -15,31 +31,30 @@ import java.util.regex.Pattern;
 /**
  * Provides caching support to the mybatis generator by adding @CacheNamespace annotation to the generated mapper
  * interface.<br>
- *
-  * Example configuration:<br/>
+ * <p/>
+ * Example configuration:<br/>
  * <tt><pre>
-  * &lt;generatorConfiguration&gt;
+ * &lt;generatorConfiguration&gt;
  *  &lt;context ...&gt;
- *
+ * <p/>
  *      &lt;plugin type="com.google.code.mybatis.generator.plugins.CachePlugin"&gt;
  *          &lt;property name=".*FooMapper"
  *                     value="implementation=org.mybatis.caches.ehcache.LoggingEhcache.class,eviction=org.apache.ibatis.cache.decorators.LruCache.class,flushInterval=100,size=100" /&gt;
  *          &lt;property name=".*BarMapper"
  *                     value="implementation=org.mybatis.caches.ehcache.LoggingEhcache.class" /&gt;
  *          ...
- *
+ * <p/>
  *      &lt;/plugin&gt;
  *      ...
- *
+ * <p/>
  *  &lt;/context&gt;
  * &lt;/generatorConfiguration&gt;
  * </pre></tt>
  * This plugin can deal with any number of properties defined using following pattern:<br/>
  * <ol>
- *     <li><strong>name</strong> is a regular expression to match a fully qualified name of the class.</li>
- *     <li><strong>value</strong> is the value of the @CacheNamespace annotation</li>
+ * <li><strong>name</strong> is a regular expression to match a fully qualified name of the class.</li>
+ * <li><strong>value</strong> is the value of the @CacheNamespace annotation</li>
  * </ol>
- *
  *
  * @author Maxim Kalina
  * @version $Id$
