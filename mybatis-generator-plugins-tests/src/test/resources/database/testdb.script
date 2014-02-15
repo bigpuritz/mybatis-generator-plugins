@@ -50,5 +50,5 @@ GRANT DBA TO SA
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
-INSERT INTO DATABASECHANGELOG VALUES('1','mk','/Users/mk/DEV/Projects/Java/mybatis-generator-plugins/mybatis-generator-plugins-tests/src/test/resources/database/ddl.xml','2014-02-15 18:24:35.353000',1,'EXECUTED','7:b84ce625aa7bcc94494c0075fe5e995c','createTable (x2)','create test schema script',NULL,'3.1.1')
+INSERT INTO DATABASECHANGELOG VALUES('1','mk','/Users/mk/DEV/Projects/Java/mybatis-generator-plugins/mybatis-generator-plugins-tests/src/test/resources/database/ddl.xml','2014-02-15 18:39:53.292000',1,'EXECUTED','7:b84ce625aa7bcc94494c0075fe5e995c','createTable (x2)','create test schema script',NULL,'3.1.1')
 INSERT INTO DATABASECHANGELOGLOCK VALUES(1,FALSE,NULL,NULL)
