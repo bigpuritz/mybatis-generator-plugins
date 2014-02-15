@@ -30,6 +30,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mybatis-generator-plugins" target="1.5" />
+      <module name="mybatis-generator-plugins-root" target="1.5" />
       <module name="mybatis-generator-plugins-tests" target="1.5" />
     </bytecodeTargetLevel>
   </component>

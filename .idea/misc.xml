@@ -17,6 +17,7 @@
       <list>
         <option value="$PROJECT_DIR$/mybatis-generator-plugins/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-generator-plugins-tests/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>

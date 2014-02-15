@@ -20,53 +20,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.javaforge.mybatis.generator</groupId>
+    <parent>
+        <groupId>net.javaforge.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-plugins-root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
     <artifactId>mybatis-generator-plugins-tests</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <name>mybatis-generator-plugins-tests</name>
     <packaging>jar</packaging>
 
     <properties>
-        <mybatis-generator-core.version>1.3.2</mybatis-generator-core.version>
-        <mybatis-generator-plugins.version>1.0.0-SNAPSHOT</mybatis-generator-plugins.version>
         <hsqldb.version>2.3.1</hsqldb.version>
         <mybatis.version>3.2.4</mybatis.version>
         <mybatis-ehcache.version>1.0.0</mybatis-ehcache.version>
-        <junit.version>4.11</junit.version>
         <javaparser.version>1.0.10</javaparser.version>
     </properties>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <scm>
-        <connection>scm:git:git@github.com:bigpuritz/mybatis-generator-plugins.git</connection>
-        <url>scm:git:git@github.com:bigpuritz/mybatis-generator-plugins.git</url>
-        <developerConnection>scm:git:git@github.com:mybatis-generator-plugins/docbook4j.git</developerConnection>
-    </scm>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/bigpuritz/mybatis-generator-plugins/issues</url>
-    </issueManagement>
-
-    <developers>
-        <developer>
-            <id>bigpuritz</id>
-            <name>Maxim Kalina</name>
-        </developer>
-    </developers>
 
     <dependencies>
         <dependency>
             <groupId>net.javaforge.mybatis.generator</groupId>
             <artifactId>mybatis-generator-plugins</artifactId>
-            <version>${mybatis-generator-plugins.version}</version>
+            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -81,12 +54,7 @@
             <version>${mybatis-ehcache.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.google.code.javaparser</groupId>
             <artifactId>javaparser</artifactId>
@@ -96,92 +64,7 @@
     </dependencies>
 
     <build>
-
         <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                    <debug>true</debug>
-                    <optimize>true</optimize>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.16</version>
-                <configuration>
-                    <skipTests>false</skipTests>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
@@ -214,7 +97,6 @@
                 </executions>
             </plugin>
 
-
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -235,7 +117,7 @@
                     <dependency>
                         <groupId>net.javaforge.mybatis.generator</groupId>
                         <artifactId>mybatis-generator-plugins</artifactId>
-                        <version>${mybatis-generator-plugins.version}</version>
+                        <version>${project.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
