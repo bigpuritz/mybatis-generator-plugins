@@ -6,7 +6,7 @@ https://github.com/bigpuritz/mybatis-generator-plugins/releases/tag/mybatis-gene
 
 Maven users please add following repository and dependency declarations to your POM-File:
 
-```
+```xml
 <repositories>
  <repository>
   <id>googlecode</id>
