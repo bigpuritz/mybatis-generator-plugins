@@ -21,7 +21,7 @@
     <parent>
         <groupId>net.javaforge.mybatis.generator</groupId>
         <artifactId>mybatis-generator-plugins-root</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>mybatis-generator-plugins-tests</artifactId>
     <packaging>jar</packaging>
